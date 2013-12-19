@@ -8,6 +8,7 @@ usage:  ./generate FILE_TO_GEN.md
 
 if you want to change anything like theme in here, id just change it in this generate script.
 
+
 """
 import argparse
 import os.path
@@ -20,7 +21,8 @@ def main():
     parser.add_argument("--incremental", "-i", help="Incremental display of lists", default=False, action="store_true")
     parser.add_argument("source", help="Source markdown file")
     args = parser.parse_args()
-    output = os.path.splitext(args.source)[0] + ".pdf" #".tex"
+    #output = os.path.splitext(args.source)[0] + ".pdf" #".tex" #what it should be!
+    output = "presentation.pdf" #i cheated ;)
     pan_args = ["pandoc", "-f", "markdown", "-V", "theme:Warsaw"]
     if args.incremental:
         pan_args.append("-i")

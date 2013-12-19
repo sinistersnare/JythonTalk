@@ -41,7 +41,7 @@ My Work with LibGDX
 * Translated the LibGDX wiki (GoogleCode -> Github)
 * Worked on Polyglot LibGDX (as shown in this very talk!)
 * Regular on IRC
-* Started Game-dev club at my school to teach and create games with LibGDX
+* Started game-dev club at my school to teach and create games with LibGDX
 
 LibGDX Classes Of Use
 =====================
@@ -61,13 +61,13 @@ Limitations of LibGDX with Jython
 =================================
 
 * GWT
-   * This backend is java only, so HTML LibGDX backend is a pipe dream
+   * This backend is Java only, so HTML LibGDX backend is a pipe dream
 
 Future
 ======
 
 * Android Support
-   * Once jython can attain DynamicProxy support, it might be possible to have Jython on android!
+   * Once Jython can attain DynamicProxy support, it might be possible to have Jython on android!
 
 * iOS support
     * the RoboVM backend runs the Android class library, so if it can anddroid, theres a good chance it can iOS!
