@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+credit to Jim Baker @ https://github.com/rackerlabs/scala-workshop/ for this nice script, and for inspiration as a whole. :)
+
+"""
+import argparse
+import os.path
+import subprocess
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Simple driver for pandoc. Or use pandoc directly for more options.")
+    parser.add_argument("--format", help="Output format", default="beamer")
+    parser.add_argument("--incremental", "-i", help="Incremental display of lists", default=False, action="store_true")
+    parser.add_argument("source", help="Source markdown file")
+    args = parser.parse_args()
+    output = os.path.splitext(args.source)[0] + ".pdf" #".tex"
+    pan_args = ["pandoc", "-f", "markdown", "-V", "theme:Warsaw"]
+    if args.incremental:
+        pan_args.append("-i")
+    pan_args.extend(["--write", "beamer", "--template", "lecture.beamer", "-o", output, args.source])
+    print "Executing:", " ".join(pan_args)
+    subprocess.check_call(pan_args)
+
+
+if __name__ == "__main__":
+    main()
