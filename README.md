@@ -1,3 +1,35 @@
+% Creating Games With Python And Java
+% Davis Silverman
+
+
+
+About Me
+==================
+
+* Amateur programmer and game developer
+* High school now, college in the future
+* Seeking a job as a developer! *wink wink, nudge nudge*
+
+Jython
+======
+
+* CPython is the reference implementation for Python.
+* Jython is a Python implementation in Java
+* Offers superb interoperability with Java libraries, along with the amazing benefits of the JVM
+* 2.7 betas are out!
+
+Comparisons of CPython and Jython
+=================================
+
+```
+#Jython                  |  #CPython
+def fibonacci():         |  def fibonacci():
+    a, b = 0, 1          |      a, b = 0, 1  
+    while True:          |      while True:
+        yield a          |          yield a
+        a, b = b, a + b  |          a, b = b, a + b
+```
+
 
 LibGDX
 ======
@@ -5,7 +37,7 @@ LibGDX
 * A cross-platform Java game development framework based on OpenGL (ES) that works on Windows, Linux, Mac OS X, Android, your WebGL enabled browser and iOS.
 
 
-![libgdx png][gdx.png]
+<img src="gdx.png" width="300" height="50">
 
 doesnt work :(
 
