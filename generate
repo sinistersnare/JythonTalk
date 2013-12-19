@@ -4,6 +4,10 @@
 """
 credit to Jim Baker @ https://github.com/rackerlabs/scala-workshop/ for this nice script, and for inspiration as a whole. :)
 
+usage:  ./generate FILE_TO_GEN.md
+
+if you want to change anything like theme in here, id just change it in this generate script.
+
 """
 import argparse
 import os.path

@@ -1,8 +1,6 @@
 % Creating Games With Python And Java
 % Davis Silverman
 
-
-
 About Me
 ==================
 
@@ -21,7 +19,7 @@ Jython
 Comparisons of CPython and Jython
 =================================
 
-```
+```python
 #Jython                  |  #CPython
 def fibonacci():         |  def fibonacci():
     a, b = 0, 1          |      a, b = 0, 1  
@@ -30,16 +28,12 @@ def fibonacci():         |  def fibonacci():
         a, b = b, a + b  |          a, b = b, a + b
 ```
 
-
 LibGDX
 ======
 
 * A cross-platform Java game development framework based on OpenGL (ES) that works on Windows, Linux, Mac OS X, Android, your WebGL enabled browser and iOS.
 
-
-<img src="gdx.png" width="300" height="50">
-
-doesnt work :(
+![]
 
 My Work with LibGDX
 ===================
@@ -49,7 +43,6 @@ My Work with LibGDX
 * Regular on IRC
 * Started Game-dev club at my school to teach and create games with LibGDX
 
-
 LibGDX Classes Of Use
 =====================
 
@@ -58,20 +51,17 @@ LibGDX Classes Of Use
 * `SpriteBatch` to draw on the screen
 * Standard math classes `Vector2`, `Rectangle`, etc.
 
-
 Small example!
 ==============
 
 * Small game from wiki translated to Python
 * To the demo! (lets hope this works!)
 
-
 Limitations of LibGDX with Jython
 =================================
 
 * GWT
    * This backend is java only, so HTML LibGDX backend is a pipe dream
-
 
 Future
 ======
@@ -85,9 +75,6 @@ Future
 * packaging
     * There has been some work on compiling/packaging jython into jars, this will make distribution of your awesome Python games very easy!
 
-
-   
-
 Links!
 ======
 
@@ -97,4 +84,4 @@ Links!
 * LibGDX Wiki: https://www.github.com/libgdx/libgdx/wiki
 * This talk: https://www.github.com/sinistersnare/JythonTalk (needs latex-beamer and pandoc)
 
-
+[]: gdx.jpg
