@@ -54,26 +54,43 @@ LibGDX Classes Of Use
 Small example!
 ==============
 
-* Small game from wiki translated to Python
-* To the demo! (lets hope this works!)
+* Small game from our wiki translated to Python
+* To the demo! (I hope this works!)
 
 Limitations of LibGDX with Jython
 =================================
 
 * GWT
-   * This backend is Java only, so HTML LibGDX backend is a pipe dream
+       * This backend is Java only, so *non-Java* HTML  LibGDX backend is a pipe dream
+       * Scala *might* work, as they seem to have some sort of scala-gwt in the works.
+
+* Enforces an OO approach. Jython translates Python -> Java using a base Java class, so it must be used.
+
 
 Future
 ======
 
 * Android Support
-   * Once Jython can attain DynamicProxy support, it might be possible to have Jython on android!
+    * Once Jython can attain DynamicProxy support, it might be possible to have Jython on Android!
 
 * iOS support
-    * the RoboVM backend runs the Android class library, so if it can anddroid, theres a good chance it can iOS!
+    * the RoboVM backend runs the Android class library, so if it can Android, there is a good chance it can iOS!
 
-* packaging
-    * There has been some work on compiling/packaging jython into jars, this will make distribution of your awesome Python games very easy!
+* Packaging
+    * There has been some work on compiling/packaging Jython into jars, this will make distribution of your awesome Python games very easy!
+
+* Possible wrapper library
+    * Making LibGDX more pythonic.
+
+
+Thanks!
+=======
+
+* Jim Baker, who has given me lots of insight into Jython, and convinced me to do this talk.
+
+* ZPUGDC (DCPython), for having me. <3
+
+* The internet, for helping me learn so much.
 
 Links!
 ======
