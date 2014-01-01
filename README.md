@@ -79,8 +79,18 @@ Future
 * Packaging
     * There has been some work on compiling/packaging Jython into jars, this will make distribution of your awesome Python games very easy!
 
-* Possible wrapper library
-    * Making LibGDX more pythonic.
+
+More pythonic LibGDX (mostly random ideas)
+==========================================
+
+* `with render(batch): ...`
+* Extending LibGDX util classes to conform to python: `len(com.badlogic.utils.Array())`
+* So much more good stuff (generators? WHO KNOWS?!?!)
+* Reduce need of both `__init__` and `create` methods (possibly using metaclass magic?)
+* Runtime introspection so `dispose()` is not needed?
+* Jython3k and function annotations could help Jython/IronPython when interoperating with their static host languages
+
+
 
 
 Thanks!
