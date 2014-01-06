@@ -59,7 +59,7 @@ class PyGdx(ApplicationListener):
         self.rainmusic.play()
     
     def render(self):
-        DROPTIME = 
+       
         Gdx.gl.glClearColor(0,0,0.2,0)
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT)
         

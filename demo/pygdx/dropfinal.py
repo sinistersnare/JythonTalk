@@ -1,6 +1,8 @@
 '''
 If I was too stupid to get the live demo working :p
 
+Mostly working, OK formatted, not very pythonic code!
+
 @author: sinistersnare
 '''
 
@@ -14,6 +16,11 @@ from com.badlogic.gdx import ApplicationListener, Gdx, Input
 from com.badlogic.gdx.graphics.g2d import SpriteBatch, BitmapFont
 from com.badlogic.gdx.graphics import Texture, OrthographicCamera, GL10
 
+WIDTH = 800
+HEIGHT = 480
+SPEED = 200
+IMGLEN = 64
+
 class DropGame(Game):
 
     def __init__(self):
@@ -25,9 +32,8 @@ class DropGame(Game):
         self.font = BitmapFont()
         self.setScreen(MainMenuScreen(self))
 
-    def render(self):
-        super(DropGame, self).render() # needs more python3!
-
+   # def render(self):
+    #    super(Game, self).render() # needs more python3!
 
     def dispose(self):
         self.batch.dispose()
@@ -42,15 +48,15 @@ class GameScreen(Screen):
         """
         self.game = game
 
-        self.dropimg = Texture("droplet.png")
-        self.bucketimg = Texture("bucket.png")
+        self.dropimg = Texture("assets/droplet.png")
+        self.bucketimg = Texture("assets/bucket.png")
 
-        self.dropsound = Gdx.audio.newSound("drop.wav")
-        self.rainmusic = Gdx.audio.newMusic("rain.mp3")
-        self.rainmusic.setLooping(true)
+        self.dropsound = Gdx.audio.newSound(Gdx.files.internal("assets/drop.wav"))
+        self.rainmusic = Gdx.audio.newMusic(Gdx.files.internal("assets/rain.mp3"))
+        self.rainmusic.setLooping(True)
 
         self.camera = OrthographicCamera()
-        self.camera.setToOrtho(False, 800, 480)
+        self.camera.setToOrtho(False, WIDTH, HEIGHT)
 
         self.bucket = Rectangle()
         self.bucket.x = 800 / 2 - 64 / 2 # initial starting point @ center of screen
@@ -62,30 +68,33 @@ class GameScreen(Screen):
         self.lastdroptime = 0
         self.dropsgathered = 0
 
+
     def spawndrop(self):
         raindrop = Rectangle() # no self! :p
-        raindrop.x = MathUtils.random(0, 800 - 64) # screen X co-ords
-        raindrop.y = 480 # always spawns on top
+        raindrop.x = MathUtils.random(0, WIDTH - 64) # screen X co-ords
+        raindrop.y = HEIGHT # always spawns on top
         raindrop.width = raindrop.height = 64
         self.raindrops.add(raindrop)
         lastdroptime = TimeUtils.nanoTime()
 
 
-    def render(self):
+    def render(self, delta):
         Gdx.gl.glClearColor(0, 0, 0.2, 1)
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT)
 
         self.camera.update()
 
-        batch.setProjectionMatrix(camera.combined)
+        self.game.batch.setProjectionMatrix(self.camera.combined)
 
+        SECOND = 1000000000 # nano-seconds
+        DROPTIME = SECOND
 
 
         self.game.batch.begin() # much less verbose with a context manager....
         self.game.batch.draw(self.bucketimg, self.bucket.x, self.bucket.y)
         self.game.batch.end()
         with rend(self.game.batch) as btch: # don't add an "i"!
-            self.game.font.draw(btch, "Drops Collected: " + self.dropsgathered, 0, 480)
+            self.game.font.draw(btch, "Drops Collected: {}".format(self.dropsgathered), 0, HEIGHT)
             btch.draw(self.bucketimg, self.bucket.x, self.bucket.y)
             for drop in self.raindrops:
                 btch.draw(self.dropimg, drop.x, drop.y)
@@ -102,21 +111,19 @@ class GameScreen(Screen):
             self.bucket.x += self.SPEED * Gdx.graphics.getDeltaTime()
 
         if self.bucket.x < 0: self.bucket.x = 0
-        if self.bucket.x > (self.width - self.IMGLEN): self.bucket.x = self.width - self.IMGLEN
+        if self.bucket.x > (WIDTH - 64): self.bucket.x = WIDTH - 64
 
-        if (TimeUtils.nanoTime() - self.lastdrop) > DROPTIME: self.spawndrop()
+        if (TimeUtils.nanoTime() - self.lastdroptime) > DROPTIME: self.spawndrop()
 
 
         iterator = self.raindrops.iterator()
         while iterator.hasNext():
             raindrop = iterator.next()
-            raindrop.y -= self.SPEED * Gdx.graphics.getDeltaTime();
-            if (raindrop.y + self.IMGLEN) < 0: iterator.remove()
+            raindrop.y -= SPEED * Gdx.graphics.getDeltaTime();
+            if (raindrop.y + IMGLEN) < 0: iterator.remove()
             if raindrop.overlaps(self.bucket):
                 self.dropsound.play()
                 iterator.remove()
-
-
 
 
     def resize(self, width, height):
@@ -144,26 +151,42 @@ class GameScreen(Screen):
 
 class MainMenuScreen(Screen):
     def __init__(self, game):
+        self.game = game
+
+        self.camera = OrthographicCamera()
+        self.camera.setToOrtho(False, 800, 400)
+
+
+    def render(self, delta):
+        Gdx.gl.glClearColor(0, 0, 0.2, 1)
+        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT)
+
+        self.camera.update()
+        self.game.batch.setProjectionMatrix(self.camera.combined)
+
+        with rend(self.game.batch) as btch:
+            self.game.font.draw(btch, "Welcome to Drop!", 100, 150)
+            self.game.font.draw(btch, "Tap Anywhere to begin!", 100, 100)
+
+        if Gdx.input.isTouched():
+            self.game.setScreen(GameScreen(self.game))
+            self.dispose()
+
+    def resize(self, w, h):
         pass
-    
-    def render(self):
-        pass
-    
-    def resize(self):
-        pass
-    
+
     def show(self):
         pass
-    
+
     def hide(self):
         pass
-    
+
     def pause(self):
         pass
-    
+
     def resume(self):
         pass
-    
+
     def dispose(self):
         pass
 
@@ -284,10 +307,10 @@ def main():
 
     cfg = LwjglApplicationConfiguration()
     cfg.title = "PyGdx";
-    cfg.width = 800
-    cfg.height = 480
+    cfg.width = WIDTH
+    cfg.height = HEIGHT
 
-    LwjglApplication(PyGDX(), cfg)
+    LwjglApplication(DropGame(), cfg)
 
 if __name__ == '__main__':
     main()
