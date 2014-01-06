@@ -64,7 +64,7 @@ Limitations of LibGDX with Jython
        * This backend is Java only, so *non-Java* HTML  LibGDX backend is a pipe dream
        * Scala *might* work, as they seem to have some sort of scala-gwt in the works.
 
-* Enforces an OO approach. Jython translates Python -> Java using a base Java class, so it must be used.
+* Enforces an OO approach.
 
 
 Future
@@ -85,12 +85,10 @@ More pythonic LibGDX (mostly random ideas)
 
 * `with render(batch): ...`
 * Extending LibGDX util classes to conform to python: `len(com.badlogic.utils.Array())`
-* So much more good stuff (generators? WHO KNOWS?!?!)
+* So much more good stuff (magic so not enforced OO? WHO KNOWS?!?!)
 * Reduce need of both `__init__` and `create` methods (possibly using metaclass magic?)
 * Runtime introspection so `dispose()` is not needed?
-* Jython3k and function annotations could help Jython/IronPython when interoperating with their static host languages
-
-
+* Jython3k and function annotations could help Jython when interoperating with their static host languages
 
 
 Thanks!
