@@ -71,7 +71,7 @@ Future
 ======
 
 * Android Support
-    * Once Jython can attain DynamicProxy support, it might be possible to have Jython on Android!
+    * Once Jython can attain DynamicProxy support, it might be possible to have Jython-LibGDX on Android!
 
 * iOS support
     * the RoboVM backend runs the Android class library, so if it can Android, there is a good chance it can iOS!

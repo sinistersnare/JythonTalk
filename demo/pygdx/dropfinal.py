@@ -75,7 +75,7 @@ class GameScreen(Screen):
         raindrop.y = HEIGHT # always spawns on top
         raindrop.width = raindrop.height = 64
         self.raindrops.add(raindrop)
-        lastdroptime = TimeUtils.nanoTime()
+        self.lastdroptime = TimeUtils.nanoTime()
 
 
     def render(self, delta):
@@ -104,7 +104,7 @@ class GameScreen(Screen):
             touchpos = Vector3()
             touchpos.set(Gdx.input.getX(), Gdx.input.getY(), 0)
             self.camera.unproject(touchpos)
-            self.bucket.x = touchpos.x - (self.IMGLEN / 2)
+            self.bucket.x = touchpos.x - (IMGLEN / 2)
         if Gdx.input.isKeyPressed(Input.Keys.LEFT):
             self.bucket.x -= self.SPEED * Gdx.graphics.getDeltaTime()
         if Gdx.input.isKeyPressed(Input.Keys.RIGHT):
